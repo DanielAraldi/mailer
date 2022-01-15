@@ -1,0 +1,35 @@
+{
+  "name": "mailer",
+  "version": "1.0.0",
+  "description": "Microsserviço para o envio de e-mails.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "dev:debug": "nodemon --inspect src/server.js",
+    "build": "sucrase ./src -d ./dist --transforms imports",
+    "start": "node dist/server.js"
+  },
+  "keywords": [
+    "Microsserviço",
+    "E-mail"
+  ],
+  "author": "Daniel Sansão Araldi",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.5.1",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "helmet": "^4.6.0",
+    "nodemailer": "^6.6.0",
+    "path": "^0.12.7",
+    "smtp-server": "^3.8.0",
+    "uuid": "^3.4.0",
+    "yup": "^0.32.9"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7",
+    "prettier": "^2.2.1",
+    "sucrase": "^3.18.1"
+  }
+}
