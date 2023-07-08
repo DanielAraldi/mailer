@@ -4,21 +4,6 @@ import { ApiError } from '../errors/ApiError';
 
 export const RequestValidatorAdapter = async body => {
   const schema = yup.object().shape({
-    host: yup
-      .string()
-      .ensure()
-      .trim()
-      .strict(true)
-      .required('Campo Host é obrigatório!')
-      .typeError('Host deve ser do tipo String')
-      .default('smtps.uhserver.com'),
-    port: yup
-      .number()
-      .positive()
-      .integer()
-      .strict(true)
-      .default(465)
-      .required('Campo Porta é obrigatório!'),
     userName: yup
       .string()
       .ensure()
