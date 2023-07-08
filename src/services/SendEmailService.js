@@ -7,8 +7,6 @@ import { ApiError } from '../errors/ApiError';
 import { PromiseHandler } from '../helpers/PromiseHandler';
 
 export const SendEmailService = async (
-  host,
-  port,
   userName = '',
   from,
   to,
@@ -19,10 +17,10 @@ export const SendEmailService = async (
   password
 ) => {
   const transporter = createTransport({
+    name: 'smtp.gmail.com',
     host: 'smtp.gmail.com',
     port: 465,
     secure: true,
-    service: 'gmail' | 'hotmail',
     auth: {
       user: login,
       pass: password,
@@ -37,6 +35,7 @@ export const SendEmailService = async (
 
   const [err, informations] = await PromiseHandler(
     transporter.sendMail({
+      html: `<body><p>${title + " - " + message}</p></body>`,
       from: fromPeople,
       to: to,
       subject: title,
@@ -46,9 +45,9 @@ export const SendEmailService = async (
   );
 
   if (err)
-    throw new ApiError(
-      'Algo ocorreu de errado ao enviar o e-mail, por favor verifique os dados que foram inseridos!',
-      400
+  throw new ApiError(
+    'Algo ocorreu de errado ao enviar o e-mail, por favor verifique os dados que foram inseridos!',
+    400
     );
 
   return informations;

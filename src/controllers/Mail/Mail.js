@@ -13,8 +13,6 @@ export default {
       fileArray = null;
 
     const {
-      host,
-      port,
       userName,
       from,
       to,
@@ -35,8 +33,6 @@ export default {
 
     [err, informations] = await PromiseHandler(
       SendEmailService(
-        host,
-        port,
         userName,
         from,
         to,
