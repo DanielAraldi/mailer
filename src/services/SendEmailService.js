@@ -1,46 +1,29 @@
 import { createTransport } from 'nodemailer';
 
-import { createFileBody } from '../utils';
-
 import { ApiError } from '../errors/ApiError';
-
 import { PromiseHandler } from '../helpers/PromiseHandler';
 
-export const SendEmailService = async (
-  userName = '',
-  from,
-  to,
-  title = '',
-  message = '',
-  fileArray = [],
-  login,
-  password
-) => {
+export const SendEmailService = async (mail) => {
   const transporter = createTransport({
     name: 'smtp.gmail.com',
     host: 'smtp.gmail.com',
     port: 465,
     secure: true,
     auth: {
-      user: login,
-      pass: password,
+      user: mail.login,
+      pass: mail.password,
     },
   });
 
-  let files = null;
-  if (fileArray === null) fileArray = [];
-  if (fileArray.length > 0) files = createFileBody(fileArray);
-
-  const fromPeople = `${userName} ${from}`.trim();
+  const fromPeople = `${mail.userName} ${mail.from}`.trim();
 
   const [err, informations] = await PromiseHandler(
     transporter.sendMail({
-      html: `<body><p>${title + " - " + message}</p></body>`,
+      html: `<body><p>${mail.title + " - " + mail.message}</p></body>`,
       from: fromPeople,
-      to: to,
-      subject: title,
-      text: message,
-      attachments: files,
+      to: mail.to,
+      subject: mail.title,
+      text: mail.message,
     })
   );
 

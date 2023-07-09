@@ -1,13 +1,13 @@
 import { ApiError } from './ApiError';
 
-export const AsyncErrors = (error, req, res, next) => {
+export const AsyncErrors = (error, request, response) => {
   if (error instanceof ApiError)
-    return res
+    return response
       .status(error.statusCode)
-      .json({ message: error.message, statusCode: res.statusCode });
+      .json({ message: error.message, statusCode: response.statusCode });
 
-  return res.status(500).json({
+  return response.status(500).json({
     message: error.message,
-    statusCode: res.statusCode,
+    statusCode: response.statusCode,
   });
 };
