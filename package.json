@@ -8,7 +8,8 @@
     "dev:debug": "nodemon --inspect src/server.js",
     "build": "sucrase ./src -d ./dist --transforms imports",
     "start": "node dist/server.js",
-    "update": "npm-check -s -u"
+    "update": "npm-check -s -u",
+    "prepare": "husky install"
   },
   "keywords": [
     "Micro-saas",
