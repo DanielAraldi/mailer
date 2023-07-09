@@ -1,18 +1,18 @@
-import { createTransport } from 'nodemailer';
+import { createTransport } from "nodemailer";
 
-import { ApiError } from '../errors/ApiError';
-import { PromiseHandler } from '../helpers/PromiseHandler';
+import { ApiError } from "../errors/ApiError";
+import { PromiseHandler } from "../helpers/PromiseHandler";
 
 export const SendEmailService = async (mail) => {
   const transporter = createTransport({
-    name: 'smtp.gmail.com',
-    host: 'smtp.gmail.com',
+    name: "smtp.gmail.com",
+    host: "smtp.gmail.com",
     port: 465,
     secure: true,
     auth: {
       user: mail.login,
-      pass: mail.password,
-    },
+      pass: mail.password
+    }
   });
 
   const fromPeople = `${mail.userName} ${mail.from}`.trim();
@@ -23,15 +23,16 @@ export const SendEmailService = async (mail) => {
       from: fromPeople,
       to: mail.to,
       subject: mail.title,
-      text: mail.message,
+      text: mail.message
     })
   );
 
-  if (err)
-  throw new ApiError(
-    'Algo ocorreu de errado ao enviar o e-mail, por favor verifique os dados que foram inseridos!',
-    400
+  if (err) {
+    throw new ApiError(
+      "Algo ocorreu de errado ao enviar o e-mail, por favor verifique os dados que foram inseridos!",
+      400
     );
+  }
 
   return informations;
 };
