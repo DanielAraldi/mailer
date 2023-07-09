@@ -7,11 +7,6 @@ import { AsyncErrors } from './errors/AsyncErrors';
 
 export const app = express();
 
-app.use((req, res, next) => {
-  delete req.headers['content-encoding'];
-  next();
-});
-
 app.use(helmet());
 app.use(express.json());
 
