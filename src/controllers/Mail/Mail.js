@@ -5,7 +5,7 @@ import {
 } from "./MailProtocols";
 
 export default {
-  async create (request, response) {
+  async create(request, response) {
     let err; let informations = null;
 
     [err, informations] = await PromiseHandler(
