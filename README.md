@@ -4,7 +4,6 @@
 
 - Rodar aplicação: `npm run dev`
 - Criar pasta dist/build do projeto: `npm run build`
-- PM2 com configurações de ambiente de produção: `pm2 start ecosystem.config.js --env production`
 
 ## Observações: 👀
 
