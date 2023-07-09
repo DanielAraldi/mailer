@@ -9,7 +9,7 @@
     "build": "sucrase ./src -d ./dist --transforms imports",
     "start": "node dist/server.js",
     "update": "npm-check -s -u",
-    "lint": "eslint ./src --fix"
+    "lint": "eslint . --fix"
   },
   "keywords": [
     "Micro-saas",
