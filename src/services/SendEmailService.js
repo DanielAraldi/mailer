@@ -3,7 +3,7 @@ import { createTransport } from "nodemailer";
 import { ApiError } from "../errors/ApiError";
 import { PromiseHandler } from "../helpers/PromiseHandler";
 
-export const SendEmailService = async (mail) => {
+export const SendEmailService = async(mail) => {
   const transporter = createTransport({
     name: "smtp.gmail.com",
     host: "smtp.gmail.com",
