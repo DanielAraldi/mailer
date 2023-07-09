@@ -1,9 +1,9 @@
-import express from 'express';
-import helmet from 'helmet';
+import express from "express";
+import helmet from "helmet";
 
-import { routes } from './routes';
+import { routes } from "./routes";
 
-import { AsyncErrors } from './errors/AsyncErrors';
+import { AsyncErrors } from "./errors/AsyncErrors";
 
 export const app = express();
 
