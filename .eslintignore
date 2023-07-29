@@ -1,0 +1,15 @@
+# Build
+dist
+
+# Coverage
+coverage
+
+# Node
+node_modules
+*config.js
+
+# VSCode
+.vscode
+
+# Husky
+.husky

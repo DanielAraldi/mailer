@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "module": "CommonJS",
+    "target": "ES2022",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "rootDirs": ["./src", "./tests"],
+    "allowJs": true
+  },
+  "include": ["./src", "./tests"],
+  "exclude": []
+}
