@@ -13,3 +13,7 @@
 - Create the project's `dist` folder: `npm run build`
 - Monitors and updates the `dist` folder: `npm run build:watch`
 - Run the project: `npm run start`
+
+## License
+
+We use the [MIT license](./LICENSE).
