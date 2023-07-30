@@ -1,6 +1,6 @@
 export interface MailModel {
   from: string;
-  to: string;
+  to: string[];
   title: string;
   message: string;
   login: string;
