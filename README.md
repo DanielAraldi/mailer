@@ -1,12 +1,19 @@
 # Mailer 📫
 
-## Comandos: 🖖
+[![wakatime](https://wakatime.com/badge/user/920a7e43-2969-4212-82ff-1b375685ff58/project/00e95626-aa7e-4501-a6fd-3f315bc40b35.svg)](https://wakatime.com/badge/user/920a7e43-2969-4212-82ff-1b375685ff58/project/00e95626-aa7e-4501-a6fd-3f315bc40b35)
 
-- Rodar aplicação: `npm run dev`
-- Criar pasta dist/build do projeto: `npm run build`
+> Mailer is a micro-saas used to send emails 📩
 
-## Observações: 👀
+## Introductions 📖
 
-- Pasta uploads: Deve existir dentro da pasta `./src` do sistema.
-- Sobre cair na caixa de spam: Caso caía no spam, apenas marque como _não é spam_.
-- Acesso a app menos seguro: Envolvendo o erro _Username and Password not accepted_ lançado pelo nodemailer quando o acesso de apps menos seguros está bloqueado. Para desbloqueá-lo [clica aqui!](https://myaccount.google.com/lesssecureapps)
+- [Commands 🖖](#commands-🖖)
+
+## Commands 🖖
+
+- Create the project's `dist` folder: `npm run build`
+- Monitors and updates the `dist` folder: `npm run build:watch`
+- Run the project: `npm run start`
+
+## License
+
+We use the [MIT license](./LICENSE).
