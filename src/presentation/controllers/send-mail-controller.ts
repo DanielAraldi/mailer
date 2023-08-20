@@ -12,9 +12,7 @@ export class SendMailController implements Controller {
   async handle(request: SendMailController.Request): Promise<HttpResponse> {
     try {
       const error = this.validation.validate(request);
-      if (error) {
-        return badRequest(error);
-      }
+      if (error) return badRequest(error);
 
       const wasSent = await this.sendEmail.send(request);
       return wasSent ? noContent() : badRequest(new SendFailedError());
