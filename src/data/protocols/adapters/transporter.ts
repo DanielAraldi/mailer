@@ -1,3 +1,5 @@
+import { MailModel } from '../../../domain';
+
 export interface Transporter {
-  create: () => void;
+  create: (mail: MailModel) => void;
 }
