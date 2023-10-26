@@ -7,10 +7,10 @@ import { SendMail, Transporter } from '../../data/protocols/adapters';
 import { MailModel } from '../../domain';
 
 export class NodemailerAdapter implements SendMail, Transporter {
-  public transporter: NodemailerTransporter = null;
+  #transporter: NodemailerTransporter = null;
 
   create(mail: MailModel): void {
-    this.transporter = createTransport({
+    this.#transporter = createTransport({
       pool: true,
       host: 'smtp.gmail.com',
       port: 465,
@@ -23,10 +23,10 @@ export class NodemailerAdapter implements SendMail, Transporter {
   }
 
   async send(mail: MailModel): Promise<boolean> {
-    if (!this.transporter) return false;
+    if (!this.#transporter) return false;
 
     const isUsername = mail.username && !String(mail.username).trim();
-    return await this.transporter.sendMail({
+    return await this.#transporter.sendMail({
       from: mail.from,
       to: mail.to,
       text: mail.message,
