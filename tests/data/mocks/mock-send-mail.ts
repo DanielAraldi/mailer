@@ -1,17 +1,15 @@
-import { faker } from '@faker-js/faker';
 import { MailModel } from '../../domain';
 import { SendMail, Transporter } from '../protocols/adapters';
+import { Transporter as NodemailerTransporter } from 'nodemailer';
 
 export class NodemailerAdapterSpy implements SendMail, Transporter {
   public mail: MailModel;
-  public transporter;
+  #transporter: NodemailerTransporter = null;
 
   async send(mail: MailModel): Promise<boolean> {
     this.mail = mail;
     return await Promise.resolve(true);
   }
 
-  create(): void {
-    this.transporter = faker.lorem.words();
-  }
+  create(): void {}
 }

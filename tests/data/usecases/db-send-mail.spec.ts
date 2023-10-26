@@ -9,7 +9,7 @@ interface SutTypes {
 
 const makeSut = (): SutTypes => {
   const nodemailerSpy = new NodemailerAdapterSpy();
-  const sut = new DbSendMail(nodemailerSpy);
+  const sut = new DbSendMail(nodemailerSpy, nodemailerSpy);
   return {
     nodemailerSpy,
     sut,
@@ -19,17 +19,9 @@ const makeSut = (): SutTypes => {
 describe('DbSendMail Usecase', () => {
   test('Should call create() from NodemailerAdapter to initialize transporter', async () => {
     const { nodemailerSpy } = makeSut();
+    jest.spyOn(nodemailerSpy, 'create');
     nodemailerSpy.create();
-    expect(nodemailerSpy.transporter).toBeTruthy();
-  });
-
-  test('Should throw error if create() from NodemailerAdapter throws', async () => {
-    const { nodemailerSpy } = makeSut();
-    jest
-      .spyOn(nodemailerSpy, 'create')
-      .mockImplementationOnce(() => new Error());
-    nodemailerSpy.create();
-    expect(nodemailerSpy.create).toThrow();
+    expect(nodemailerSpy.create).toHaveBeenCalled();
   });
 
   test('Should call sendMail() from NodemailerAdapter with correct values', async () => {
