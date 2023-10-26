@@ -39,7 +39,7 @@ describe('Email Validation', () => {
     expect(sut.validate).toThrow();
   });
 
-  test('Should return null if EmailValidator returns true', () => {
+  test('Should return null if EmailValidator succeds', () => {
     const { sut } = makeSut();
     const error = sut.validate({ [field]: faker.internet.email() });
     expect(error).toBeNull();
