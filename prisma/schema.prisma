@@ -12,6 +12,7 @@ model Mail {
   from      String
   to        To[]
   title     String
+  message   String
   login     String
   password  String
   username  String?
@@ -22,5 +23,5 @@ model To {
   id     String @id @default(uuid())
   email  String
   mailId String
-  mail   Mail   @relation(fields: [mailId], references: [id])
+  mail   Mail   @relation(fields: [mailId], references: [id], onDelete: Cascade)
 }
