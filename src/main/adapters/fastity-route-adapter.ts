@@ -5,11 +5,11 @@ export const adaptRoute = (controller: Controller) => {
   return async (request: FastifyRequest, reply: FastifyReply) => {
     const httpResponse = await controller.handle(request.body);
     if (httpResponse.statusCode >= 200 && httpResponse.statusCode <= 299) {
-      await reply.send(httpResponse.body).status(httpResponse.statusCode);
+      await reply.status(httpResponse.statusCode).send(httpResponse.body);
     } else {
       await reply
-        .send({ error: httpResponse.body.message })
-        .status(httpResponse.statusCode);
+        .status(httpResponse.statusCode)
+        .send({ error: httpResponse.body.message });
     }
   };
 };
