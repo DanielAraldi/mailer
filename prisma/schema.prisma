@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Mail {
+  id        String   @id @default(uuid())
+  from      String
+  to        To[]
+  title     String
+  message   String
+  login     String
+  password  String
+  username  String?
+  createdAt DateTime @default(now())
+}
+
+model To {
+  id     String @id @default(uuid())
+  email  String
+  mailId String
+  mail   Mail   @relation(fields: [mailId], references: [id], onDelete: Cascade)
+}
