@@ -21,7 +21,7 @@ describe('Send Mail Routes', () => {
   });
 
   describe('POST /send', () => {
-    test('Should return 400 if from property is an incorrect email', async () => {
+    test('Should return 400 if "from" property is an incorrect email', async () => {
       const response = await app.inject({
         method: 'POST',
         url: '/api/send',
@@ -38,6 +38,26 @@ describe('Send Mail Routes', () => {
 
       expect(response.body).toBeTruthy();
       expect(response.body).toEqual('{"error":"Invalid param: from"}');
+      expect(response.statusCode).toBe(400);
+    });
+
+    test('Should return 400 if "to" property is blank', async () => {
+      const response = await app.inject({
+        method: 'POST',
+        url: '/api/send',
+        body: {
+          from: faker.internet.email(),
+          to: [],
+          title: faker.lorem.words(),
+          message: faker.lorem.paragraph(),
+          username: faker.internet.userName(),
+          login: faker.internet.userName(),
+          password: faker.internet.password(),
+        },
+      });
+
+      expect(response.body).toBeTruthy();
+      expect(response.body).toEqual('{"error":"Missing param: to"}');
       expect(response.statusCode).toBe(400);
     });
   });
