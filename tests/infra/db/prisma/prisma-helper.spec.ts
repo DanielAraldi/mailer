@@ -10,4 +10,12 @@ describe('PrismaHelper', () => {
       expect(isConnected).toBeTruthy();
     });
   });
+
+  describe('disconnect()', () => {
+    test('Should not be able connect to prisma client', async () => {
+      await PrismaHelper.disconnect();
+      const isConnected = PrismaHelper.isConnected;
+      expect(isConnected).toBeFalsy();
+    });
+  });
 });
