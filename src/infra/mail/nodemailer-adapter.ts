@@ -10,14 +10,13 @@ export class NodemailerAdapter implements SendMail, Transporter {
   #transporter: NodemailerTransporter = null;
 
   create(mail: MailModel): void {
+    const { login, password } = mail;
     this.#transporter = createTransport({
-      pool: true,
-      host: 'smtp.gmail.com',
-      port: 465,
-      secure: true,
+      host: 'sandbox.smtp.mailtrap.io',
+      port: 2525,
       auth: {
-        user: mail.login,
-        pass: mail.password,
+        user: login,
+        pass: password,
       },
     });
   }
@@ -25,12 +24,13 @@ export class NodemailerAdapter implements SendMail, Transporter {
   async send(mail: MailModel): Promise<boolean> {
     if (!this.#transporter) return false;
 
-    const isUsername = mail.username && !String(mail.username).trim();
+    const { from, to, message, title, username } = mail;
+    const hasUsername = username && !String(username).trim();
     return await this.#transporter.sendMail({
-      from: mail.from,
-      to: mail.to,
-      text: mail.message,
-      subject: isUsername ? `${mail.title} - ${mail.username}` : mail.title,
+      from,
+      to,
+      text: message,
+      subject: hasUsername ? `${title} - ${username}` : title,
     });
   }
 }
