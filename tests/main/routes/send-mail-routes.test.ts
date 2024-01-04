@@ -92,7 +92,27 @@ describe('Send Mail Routes', () => {
       });
 
       expect(response.body).toEqual('{"error":"Missing param: login"}');
+      expect(response.body).not.toEqual('{"error":"Missing param: password"}');
       expect(response.statusCode).toBe(400);
+    });
+
+    test('Should return 500 if a invalid login is done', async () => {
+      const response = await app.inject({
+        method: 'POST',
+        url: '/api/send',
+        body: {
+          from: faker.internet.email(),
+          to: [faker.internet.email()],
+          title: faker.lorem.words(),
+          message: faker.lorem.paragraph(),
+          username: faker.internet.userName(),
+          login: faker.internet.userName(),
+          password: faker.internet.password(),
+        },
+      });
+
+      expect(response.body).toEqual('{"error":"Internal Server Error"}');
+      expect(response.statusCode).toBe(500);
     });
   });
 });
