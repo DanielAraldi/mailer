@@ -6,7 +6,7 @@
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig-build.json",
     "build:watch": "rimraf dist && tsc -p tsconfig-build.json -w",
-    "start": "node dist/server.js",
+    "start": "node dist/main/server.js",
     "update": "npm-check -s -u",
     "lint": "eslint . --ext ts --fix",
     "prepare": "husky install",
