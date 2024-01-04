@@ -77,5 +77,22 @@ describe('Send Mail Routes', () => {
       expect(response.body).toEqual('{"error":"Invalid param: to"}');
       expect(response.statusCode).toBe(400);
     });
+
+    test('Should return 400 if a required property is missing', async () => {
+      const response = await app.inject({
+        method: 'POST',
+        url: '/api/send',
+        body: {
+          from: faker.internet.email(),
+          to: [faker.internet.email()],
+          title: faker.lorem.words(),
+          message: faker.lorem.paragraph(),
+          username: faker.internet.userName(),
+        },
+      });
+
+      expect(response.body).toEqual('{"error":"Missing param: login"}');
+      expect(response.statusCode).toBe(400);
+    });
   });
 });
