@@ -1,14 +1,14 @@
-import { RequiredFieldValuesValidation } from '../../../src/validation/validators';
+import { RequiredMultiValuesInTheFieldValidation } from '../../../src/validation/validators';
 import { MissingParamError } from '../../../src/presentation/errors';
 import { faker } from '@faker-js/faker';
 
 const field = faker.lorem.word();
 
-const makeSut = (): RequiredFieldValuesValidation =>
-  new RequiredFieldValuesValidation([field]);
+const makeSut = (): RequiredMultiValuesInTheFieldValidation =>
+  new RequiredMultiValuesInTheFieldValidation([field]);
 
-describe('Required Field Values Validation', () => {
-  test('Should call RequiredFieldValuesValidation with correct field', () => {
+describe('Required Multi Values in the Field Validation', () => {
+  test('Should call RequiredMultiValuesInTheFieldValidation with correct field', () => {
     const sut = makeSut();
     const validateSpy = jest.spyOn(sut, 'validate');
     const input = { [field]: [faker.lorem.word()] };
@@ -28,7 +28,7 @@ describe('Required Field Values Validation', () => {
     expect(error).toEqual(new MissingParamError(field));
   });
 
-  test('Should return null if validation succeds', () => {
+  test('Should return null if validation succeeds', () => {
     const sut = makeSut();
     const error = sut.validate({ [field]: [faker.lorem.word()] });
     expect(error).toBeNull();

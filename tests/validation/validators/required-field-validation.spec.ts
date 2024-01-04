@@ -22,7 +22,7 @@ describe('Required Field Validation', () => {
     expect(error).toEqual(new MissingParamError(field));
   });
 
-  test('Should return null if validation succeds', () => {
+  test('Should return null if validation succeeds', () => {
     const sut = makeSut();
     const error = sut.validate({ [field]: faker.lorem.word() });
     expect(error).toBeNull();
