@@ -3,25 +3,18 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model Mail {
   id        String   @id @default(uuid())
   from      String
-  to        To[]
+  to        String[]
   title     String
   message   String
   login     String
   password  String
   username  String?
   createdAt DateTime @default(now())
-}
-
-model To {
-  id     String @id @default(uuid())
-  email  String
-  mailId String
-  mail   Mail   @relation(fields: [mailId], references: [id], onDelete: Cascade)
 }
