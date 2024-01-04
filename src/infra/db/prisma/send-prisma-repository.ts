@@ -1,10 +1,11 @@
-import { PrismaHelper } from "./prisma-helper";
-import { SendEmailRepository } from "../../../data/protocols/db";
+import { PrismaHelper } from './prisma-helper';
+import { SendEmailRepository } from '../../../data/protocols/db';
 
 export class SendPrismaRepository implements SendEmailRepository {
-  async send(data: SendEmailRepository.Params
+  async send(
+    data: SendEmailRepository.Params
   ): Promise<SendEmailRepository.Result> {
-    const mailTable = await PrismaHelper.getTable('Mail');
+    const mailTable = await PrismaHelper.getTable('mail');
 
     const dataTo = data.to;
     const result = await mailTable.create({
@@ -16,10 +17,7 @@ export class SendPrismaRepository implements SendEmailRepository {
           })),
         },
       },
-
     });
-    console.log(dataTo);
-    console.log(result.id);
     return !!result.id;
   }
 }
