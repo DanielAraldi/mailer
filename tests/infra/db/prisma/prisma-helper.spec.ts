@@ -18,4 +18,11 @@ describe('PrismaHelper', () => {
       expect(isConnected).toBeFalsy();
     });
   });
+
+  describe('getTable()', () => {
+    test('Should be able get a table in prisma client', async () => {
+      const isValid = await PrismaHelper.getTable('mail');
+      expect(isValid).toBeTruthy();
+    });
+  });
 });
