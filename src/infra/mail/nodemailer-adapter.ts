@@ -5,15 +5,17 @@ import {
 
 import { SendMail, Transporter } from '../../data/protocols/adapters';
 import { MailModel } from '../../domain';
+import env from '../../main/config/env';
 
 export class NodemailerAdapter implements SendMail, Transporter {
   #transporter: NodemailerTransporter = null;
 
   create(mail: MailModel): void {
     const { login, password } = mail;
+    const { mailHost, mailPort } = env;
     this.#transporter = createTransport({
-      host: 'sandbox.smtp.mailtrap.io',
-      port: 2525,
+      host: mailHost,
+      port: mailPort,
       auth: {
         user: login,
         pass: password,
