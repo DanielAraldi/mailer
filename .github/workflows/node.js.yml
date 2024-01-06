@@ -3,6 +3,8 @@ name: CI - Merge and Release
 on:
   push: 
   pull_request:
+  workflow_dispatch:
+    
 
 jobs:
   build:
@@ -15,6 +17,9 @@ jobs:
       DATABASE_URL: ${{secrets.DATABASE_URL}}
       MAIL_LOGIN: ${{secrets.MAIL_LOGIN}}
       MAIL_PASSWORD: ${{secrets.MAIL_PASSWORD}}
+      POSTGRESQL_USERNAME: ${{ secrets.POSTGRESQL_USERNAME }}
+      POSTGRESQL_PASSWORD: ${{ secrets.POSTGRESQL_PASSWORD }}
+      POSTGRESQL_DATABASE: ${{ secrets.POSTGRESQL_DATABASE }}
 
     services:
       postgres:
@@ -28,6 +33,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: Generate .env file
+        run: |
+          echo "DATABASE_URL=${DATABASE_URL}" > .env
+          echo "MAIL_LOGIN=${MAIL_LOGIN}" >> .env
+          echo "MAIL_PASSWORD=${MAIL_PASSWORD}" >> .env
+          echo "POSTGRESQL_USERNAME=${POSTGRESQL_USERNAME}" >> .env
+          echo "POSTGRESQL_PASSWORD=${POSTGRESQL_PASSWORD}" >> .env
+          echo "POSTGRESQL_DATABASE=${POSTGRESQL_DATABASE}" >> .env
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
