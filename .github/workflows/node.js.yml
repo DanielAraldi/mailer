@@ -25,6 +25,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      
+      - name: Print Environment Variables
+        run: echo "POSTGRESQL_USERNAME=${{ secrets.POSTGRESQL_USERNAME }}"
 
       - name: Generate .env file
         run: |
@@ -36,7 +39,7 @@ jobs:
           echo "POSTGRESQL_PASSWORD=${{ secrets.POSTGRESQL_PASSWORD }}" >> .env
           echo "POSTGRESQL_DATABASE=${{ secrets.POSTGRESQL_DATABASE }}" >> .env
           cat .env
-          
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
