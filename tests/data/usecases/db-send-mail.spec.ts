@@ -34,6 +34,7 @@ describe('DbSendMail Usecase', () => {
 
   test("Should return false if sendMail() from NodemailerAdapter doesn't initialize transporter", async () => {
     const { sut, nodemailerSpy } = makeSut();
+    nodemailerSpy.transporter = null;
     const mail = mockSendMailParams();
     jest
       .spyOn(nodemailerSpy, 'send')
@@ -53,7 +54,7 @@ describe('DbSendMail Usecase', () => {
     await expect(promise).rejects.toThrow();
   });
 
-  test('Should return true if sendMail() from NodemailerAdapter send an mail', async () => {
+  test('Should return true if sendMail() from NodemailerAdapter send an email', async () => {
     const { sut, nodemailerSpy } = makeSut();
     const mail = mockSendMailParams();
     nodemailerSpy.create();
