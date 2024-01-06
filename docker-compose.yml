@@ -7,3 +7,7 @@ services:
       - 5432:5432
     env_file:
       - .env
+    environment:
+      - POSTGRESQL_USERNAME=test
+      - POSTGRESQL_PASSWORD=test
+      - POSTGRESQL_DATABASE=test
