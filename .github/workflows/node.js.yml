@@ -1,10 +1,8 @@
 name: CI - Merge and Release
 
 on:
-  push:
-    branches: ["main"]
+  push: 
   pull_request:
-    branches: ["main"]
 
 jobs:
   build:
@@ -23,5 +21,14 @@ jobs:
           cache: "npm"
       - name: Install Dependencies
         run: npm install
+
       - name: Fixing non-standard Scripts
         run: npm run lint
+
+      - name: Run coverall Tests
+        run: npm run test:coveralls
+        
+      - name: "Coveralls"
+        uses: coverallsapp/github-action@v2
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
