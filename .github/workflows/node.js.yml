@@ -36,12 +36,12 @@ jobs:
 
       - name: Generate .env file
         run: |
-          echo "DATABASE_URL=${DATABASE_URL}" > .env
-          echo "MAIL_LOGIN=${MAIL_LOGIN}" >> .env
-          echo "MAIL_PASSWORD=${MAIL_PASSWORD}" >> .env
-          echo "POSTGRESQL_USERNAME=${POSTGRESQL_USERNAME}" >> .env
-          echo "POSTGRESQL_PASSWORD=${POSTGRESQL_PASSWORD}" >> .env
-          echo "POSTGRESQL_DATABASE=${POSTGRESQL_DATABASE}" >> .env
+          echo "DATABASE_URL=${secrets.DATABASE_URL}" > .env
+          echo "MAIL_LOGIN=${secrets.MAIL_LOGIN}" >> .env
+          echo "MAIL_PASSWORD=${secrets.MAIL_PASSWORD}" >> .env
+          echo "POSTGRESQL_USERNAME=${secrets.POSTGRESQL_USERNAME}" >> .env
+          echo "POSTGRESQL_PASSWORD=${secrets.POSTGRESQL_PASSWORD}" >> .env
+          echo "POSTGRESQL_DATABASE=${secrets.POSTGRESQL_DATABASE}" >> .env
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
