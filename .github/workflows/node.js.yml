@@ -35,6 +35,15 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      - name: Create .env file
+        run: |
+          echo "POSTGRESQL_USERNAME=${{ secrets.POSTGRESQL_USERNAME }}" >> .env
+          echo "POSTGRESQL_PASSWORD=${{ secrets.POSTGRESQL_PASSWORD }}" >> .env
+          echo "POSTGRESQL_DATABASE=${{ secrets.POSTGRESQL_DATABASE }}" >> .env
+          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env
+          echo "MAIL_LOGIN=${{ secrets.MAIL_LOGIN }}" >> .env
+          echo "MAIL_PASSWORD=${{ secrets.MAIL_PASSWORD }}" >> .env
+
       - name: Fixing non-standard Scripts
         run: npm run lint
 
