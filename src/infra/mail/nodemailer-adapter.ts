@@ -16,6 +16,7 @@ export class NodemailerAdapter implements SendMail, Transporter {
     this.#transporter = createTransport({
       host: mailHost,
       port: mailPort,
+      secure: false,
       auth: {
         user: login,
         pass: password,

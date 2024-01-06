@@ -12,17 +12,19 @@
     "start": "node dist/main/server.js",
     "update": "npm-check -s -u",
     "lint": "eslint . --ext ts --fix",
-    "prepare": "husky install",
+    "prepare": "husky install && npm run prisma:dev",
     "prisma:dev": "npx prisma migrate dev",
     "prisma:deploy": "npx prisma migrate deploy",
-    "test": "npm run up && jest --passWithNoTests --runInBand --no-cache && npm run stop",
-    "test:verbose": "npm run up && jest --passWithNoTests --runInBand && npm run stop",
+    "test": "jest --passWithNoTests --runInBand --no-cache",
+    "test:verbose": "jest --passWithNoTests --runInBand",
     "test:unit": "npm run test -- --watch -c jest-unit-config.js",
     "test:integration": "npm run test -- --watch -c jest-integration-config.js",
     "test:staged": "npm run test -- --findRelatedTests .",
     "test:ci": "npm run test -- --coverage",
     "test:coveralls": "npm run test:ci && coveralls < coverage/lcov.info",
-    "test:clear": "jest --clearCache"
+    "test:clear": "jest --clearCache",
+    "pretest": "npm run up",
+    "posttest": "npm run stop"
   },
   "keywords": [
     "Micro-saas",
