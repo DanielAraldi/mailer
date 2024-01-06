@@ -13,7 +13,9 @@ describe('Send Mail Routes', () => {
     await PrismaHelper.connect();
   });
 
-  afterAll(async () => await PrismaHelper.disconnect());
+  afterAll(async () => {
+    await PrismaHelper.disconnect();
+  });
 
   beforeEach(async () => {
     mailTable = await PrismaHelper.getTable('mail');

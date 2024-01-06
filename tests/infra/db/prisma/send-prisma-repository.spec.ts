@@ -8,9 +8,13 @@ let mailTable: PrismaClient['mail'];
 const makeSut = (): SendEmailRepository => new SendPrismaRepository();
 
 describe('SendPrismaRepository', () => {
-  beforeAll(async () => await PrismaHelper.connect());
+  beforeAll(async () => {
+    await PrismaHelper.connect();
+  });
 
-  afterAll(async () => await PrismaHelper.disconnect());
+  afterAll(async () => {
+    await PrismaHelper.disconnect();
+  });
 
   beforeEach(async () => {
     mailTable = await PrismaHelper.getTable('mail');

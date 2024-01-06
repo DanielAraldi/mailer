@@ -6,11 +6,7 @@ const app = Fastify({
   logger: true,
 });
 
-setupMiddlewares(app)
-  .then(() => console.log('Middlewares initialized!'))
-  .catch(console.error);
-setupRoutes(app)
-  .then(() => console.log('Routes initialized!'))
-  .catch(console.error);
+setupMiddlewares(app).catch(console.error);
+setupRoutes(app).catch(console.error);
 
 export default app;
