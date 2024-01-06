@@ -4,7 +4,7 @@ import { Transporter as NodemailerTransporter } from 'nodemailer';
 
 export class NodemailerAdapterSpy implements SendMail, Transporter {
   public mail: MailModel;
-  readonly #transporter: NodemailerTransporter = null;
+  public transporter: NodemailerTransporter = null;
 
   async send(mail: MailModel): Promise<boolean> {
     this.mail = mail;
