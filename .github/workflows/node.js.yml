@@ -32,9 +32,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
-      - name: Install Dependencies
-        run: npm install
-
       - name: Create .env file
         run: |
           echo "POSTGRESQL_USERNAME=${{ secrets.POSTGRESQL_USERNAME }}" >> .env
@@ -43,6 +40,9 @@ jobs:
           echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env
           echo "MAIL_LOGIN=${{ secrets.MAIL_LOGIN }}" >> .env
           echo "MAIL_PASSWORD=${{ secrets.MAIL_PASSWORD }}" >> .env
+      - name: Install Dependencies
+        run: npm install
+
 
       - name: Fixing non-standard Scripts
         run: npm run lint
