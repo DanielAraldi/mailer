@@ -11,11 +11,11 @@ describe('Send Mail Routes', () => {
   beforeAll(async () => {
     app = await getInstance();
     await PrismaHelper.connect();
-  });
+  }, 30000);
 
   afterAll(async () => {
     await PrismaHelper.disconnect();
-  });
+  }, 30000);
 
   beforeEach(async () => {
     mailTable = await PrismaHelper.getTable('mail');
