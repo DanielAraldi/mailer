@@ -1,10 +1,10 @@
 name: CI - Merge and Release
 
 on:
-  push: 
+  push:
   pull_request:
   workflow_dispatch:
-    
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         node-version: [16.x, 18.x]
-    
+
     services:
       postgres:
         image: bitnami/postgresql
@@ -25,26 +25,33 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      
+        env:
+          MAIL_PASS: ${{ secrets.MAIL_PASSWORD }}
+          MAIL_USER: ${{ secrets.MAIL_LOGIN }}
+          PG_USERNAME: ${{ secrets.POSTGRESQL_USERNAME }}
+          PG_PASSWORD: ${{ secrets.POSTGRESQL_PASSWORD }}
+          PG_DATABASE: ${{ secrets.POSTGRESQL_DATABASE }}
+          DB_URL: ${{ secrets.DATABASE_URL }}
+
       - name: Print Environment Variables
-        run: echo "POSTGRESQL_USERNAME=${{ secrets.POSTGRESQL_USERNAME }}"
+        run: echo ${#PG_USERNAME}
 
       - name: Generate .env file
         run: |
           touch .env
-          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env
-          echo "MAIL_LOGIN=${{ secrets.MAIL_LOGIN }}" >> .env
-          echo "MAIL_PASSWORD=${{ secrets.MAIL_PASSWORD }}" >> .env
-          echo "POSTGRESQL_USERNAME=${{ secrets.POSTGRESQL_USERNAME }}" >> .env
-          echo "POSTGRESQL_PASSWORD=${{ secrets.POSTGRESQL_PASSWORD }}" >> .env
-          echo "POSTGRESQL_DATABASE=${{ secrets.POSTGRESQL_DATABASE }}" >> .env
+          echo "DATABASE_URL=${#DB_URL}" >> .env
+          echo "MAIL_LOGIN=${#MAIL_USER}" >> .env
+          echo "MAIL_PASSWORD=${#MAIL_PASS}" >> .env
+          echo "POSTGRESQL_USERNAME=${#PG_USERNAME}" >> .env
+          echo "POSTGRESQL_PASSWORD=${#PG_PASSWORD}" >> .env
+          echo "POSTGRESQL_DATABASE=${#PG_DATABASE}" >> .env
           cat .env
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: "npm"
+          cache: 'npm'
 
       - name: Install Dependencies
         run: npm install
@@ -54,8 +61,8 @@ jobs:
 
       - name: Run coverall Tests
         run: npm run test:coveralls
-        
-      - name: "Coveralls"
+
+      - name: 'Coveralls'
         uses: coverallsapp/github-action@v2
         with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
