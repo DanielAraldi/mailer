@@ -1,10 +1,9 @@
-name: CI - Merge and Release
+name: CI - Test, Lint and Coveralls Coverage
 
 on:
   push:
-    branches: ["main"]
   pull_request:
-    branches: ["main"]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -14,14 +13,41 @@ jobs:
       matrix:
         node-version: [16.x, 18.x]
 
+    services:
+      postgres:
+        image: bitnami/postgresql
+        ports:
+          - 5432
+
     steps:
       - uses: actions/checkout@v3
+
+      - name: Generate .env file
+        run: |
+          touch .env
+          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env
+          echo "MAIL_LOGIN=${{ secrets.MAIL_LOGIN }}" >> .env
+          echo "MAIL_PASSWORD=${{ secrets.MAIL_PASSWORD }}" >> .env
+          echo "POSTGRESQL_USERNAME=${{ secrets.POSTGRESQL_USERNAME }}" >> .env
+          echo "POSTGRESQL_PASSWORD=${{ secrets.POSTGRESQL_PASSWORD }}" >> .env
+          echo "POSTGRESQL_DATABASE=${{ secrets.POSTGRESQL_DATABASE }}" >> .env
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: "npm"
+          cache: 'npm'
+
       - name: Install Dependencies
         run: npm install
+
       - name: Fixing non-standard Scripts
         run: npm run lint
+
+      - name: Generate Jest Coverage
+        run: npm run test:ci
+
+      - name: Run Coveralls
+        uses: coverallsapp/github-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
