@@ -28,7 +28,20 @@
     "Micro-saas",
     "E-mail"
   ],
-  "author": "Daniel Sansão Araldi and Rafael Mota Alves",
+  "bugs": {
+    "email": "danielsaraldi@gmail.com",
+    "url": "https://github.com/DanielAraldi/mailer/issues"
+  },
+  "contributors": [
+    "Daniel Sansão Araldi",
+    "Rafael Mota Alves"
+  ],
+  "repository": {
+    "url": "https://github.com/DanielAraldi/mailer"
+  },
+  "homepage": "https://github.com/DanielAraldi/mailer",
+  "readme": "https://github.com/DanielAraldi/mailer/blob/main/README.md",
+  "author": "Daniel Sansão Araldi",
   "license": "MIT",
   "dependencies": {
     "@fastify/cors": "^8.5.0",
