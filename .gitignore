@@ -108,6 +108,3 @@ dist
 
 # Build
 dist
-
-# Coveralls
-.coveralls.yml
