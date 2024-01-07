@@ -7,7 +7,7 @@ on:
     branches: main
 
 jobs:
-  release:
+  publish:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,12 +17,6 @@ jobs:
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v4
         with:
-          extra_plugins: |
-            @semantic-release/commit-analyzer
-            @semantic-release/changelog
-            @semantic-release/release-notes-generator
-            @semantic-release/github
-            @semantic-release/git
           branches: main
 
         env:
