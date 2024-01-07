@@ -1,4 +1,4 @@
-name: CI - Merge and Release
+name: CI - Test, Lint and Coveralls Coverage
 
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
       postgres:
         image: bitnami/postgresql
         ports:
-          - 5432:5432
+          - 5432
         env:
           POSTGRESQL_USERNAME: ${{ secrets.POSTGRESQL_USERNAME }}
           POSTGRESQL_PASSWORD: ${{ secrets.POSTGRESQL_PASSWORD }}
@@ -25,9 +25,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-
-      - name: Print Environment Variables
-        run: echo "POSTGRESQL_USERNAME=${{ secrets.POSTGRESQL_USERNAME }}"
 
       - name: Generate .env file
         run: |
@@ -52,7 +49,7 @@ jobs:
       - name: Fixing non-standard Scripts
         run: npm run lint
 
-      - name: Run coverall Tests
+      - name: Run Coveralls to make Tests Coverage
         run: npm run test:coveralls
 
       - name: 'Coveralls'
