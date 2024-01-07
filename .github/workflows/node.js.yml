@@ -44,10 +44,10 @@ jobs:
       - name: Fixing non-standard Scripts
         run: npm run lint
 
-      - name: Run Coveralls to make Tests Coverage
-        run: npm run test:coveralls
+      - name: Generate Jest Coverage
+        run: npm run test:ci
 
-      - name: 'Coveralls'
+      - name: Run Coveralls
         uses: coverallsapp/github-action@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
