@@ -18,10 +18,6 @@ jobs:
         image: bitnami/postgresql
         ports:
           - 5432
-        env:
-          POSTGRESQL_USERNAME: ${{ secrets.POSTGRESQL_USERNAME }}
-          POSTGRESQL_PASSWORD: ${{ secrets.POSTGRESQL_PASSWORD }}
-          POSTGRESQL_DATABASE: ${{ secrets.POSTGRESQL_DATABASE }}
 
     steps:
       - uses: actions/checkout@v3
@@ -35,7 +31,6 @@ jobs:
           echo "POSTGRESQL_USERNAME=${{ secrets.POSTGRESQL_USERNAME }}" >> .env
           echo "POSTGRESQL_PASSWORD=${{ secrets.POSTGRESQL_PASSWORD }}" >> .env
           echo "POSTGRESQL_DATABASE=${{ secrets.POSTGRESQL_DATABASE }}" >> .env
-          cat .env
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
