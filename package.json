@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A best micro-saas to send e-mails",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig-build.json",
     "build:watch": "rimraf dist && tsc -p tsconfig-build.json -w",
@@ -55,6 +56,7 @@
     "@babel/core": "^7.23.7",
     "@babel/preset-env": "^7.23.7",
     "@faker-js/faker": "^8.3.1",
+    "@semantic-release/npm": "^11.0.2",
     "@types/jest": "^29.5.11",
     "@types/node": "^20.10.6",
     "@types/nodemailer": "^6.4.14",
