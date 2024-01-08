@@ -38,7 +38,15 @@
         "assets": ["./CHANGELOG.md"]
       }
     ],
-    "@semantic-release/release-notes-generator",
+    [
+      "@semantic-release/release-notes-generator",
+      {
+        "present": "angular",
+        "writerOpts": {
+          "commitsSort": ["subject", "scope"]
+        }
+      }
+    ],
     "@semantic-release/github"
   ]
 }
