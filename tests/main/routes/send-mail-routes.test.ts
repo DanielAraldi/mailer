@@ -118,16 +118,17 @@ describe('Send Mail Routes', () => {
     });
 
     test('Should return 204 when email is sent with succeeds', async () => {
+      const username = getMailUsername();
       const response = await app.inject({
         method: 'POST',
         url: '/api/send',
         body: {
-          from: faker.internet.email(),
-          to: [faker.internet.email()],
+          from: username,
+          to: [username],
           title: faker.lorem.words(),
           message: faker.lorem.paragraph(),
           username: faker.internet.userName(),
-          login: getMailUsername(),
+          login: username,
           password: getMailPassword(),
         },
       });
