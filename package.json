@@ -1,6 +1,6 @@
 {
   "name": "mailer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A best micro-saas to send e-mails",
   "main": "index.js",
   "private": true,
