@@ -58,4 +58,4 @@ jobs:
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx semantic-release -d --no-ci
+        run: npx semantic-release --no-ci
