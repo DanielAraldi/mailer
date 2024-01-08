@@ -3,21 +3,59 @@ name: CI - Release
 on:
   push:
     branches: main
-  pull_request:
-    branches: main
+
+permissions:
+  contents: read
 
 jobs:
-  publish:
+  release:
+    name: Release
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    services:
+      postgres:
+        image: bitnami/postgresql
+        ports:
+          - 5432
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Semantic Release
-        uses: cycjimmy/semantic-release-action@v4
+      - uses: actions/checkout@v3
         with:
-          branches: main
+          fetch-depth: 0
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
 
+      - name: Generate .env file
+        run: |
+          touch .env
+          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env
+          echo "MAIL_LOGIN=${{ secrets.MAIL_LOGIN }}" >> .env
+          echo "MAIL_PASSWORD=${{ secrets.MAIL_PASSWORD }}" >> .env
+          echo "POSTGRESQL_USERNAME=${{ secrets.POSTGRESQL_USERNAME }}" >> .env
+          echo "POSTGRESQL_PASSWORD=${{ secrets.POSTGRESQL_PASSWORD }}" >> .env
+          echo "POSTGRESQL_DATABASE=${{ secrets.POSTGRESQL_DATABASE }}" >> .env
+
+      - name: Install Dependencies
+        run: npm clean-install
+
+      - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
+        run: npm audit signatures
+
+      - name: Build Program
+        run: npm run build
+
+      - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release --no-ci
