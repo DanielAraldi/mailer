@@ -6,6 +6,10 @@
 
 [![Coverage Status](https://coveralls.io/repos/github/DanielAraldi/mailer/badge.svg?branch=feat/send-mail-controller)](https://coveralls.io/github/DanielAraldi/mailer?branch=feat/send-mail-controller)
 
+<a href="https://www.npmjs.com/package/git-commit-msg-linter">
+  <img src="https://badgen.net/badge/git-commit-msg-linter/3.0.0/yellow" alt="commit msg linted by git-commit-msg-linter" />
+</a>
+
 </div>
 
 > Mailer is a micro-saas used to send emails 📩
