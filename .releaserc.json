@@ -2,12 +2,6 @@
   "branches": ["main"],
   "plugins": [
     [
-      "@semantic-release/npm",
-      {
-        "npmPublish": false
-      }
-    ],
-    [
       "@semantic-release/commit-analyzer",
       {
         "preset": "angular",
@@ -26,6 +20,7 @@
         ]
       }
     ],
+    "semantic-release/release-notes-generator",
     [
       "@semantic-release/changelog",
       {
@@ -33,15 +28,12 @@
       }
     ],
     [
-      "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
       {
-        "present": "angular",
-        "writerOpts": {
-          "commitsSort": ["subject", "scope"]
-        }
+        "npmPublish": false
       }
     ],
-    "@semantic-release/git",
-    "@semantic-release/github"
+    "@semantic-release/github",
+    "@semantic-release/git"
   ]
 }
