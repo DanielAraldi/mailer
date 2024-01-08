@@ -5,17 +5,16 @@ import {
 
 import { SendMail, Transporter } from '../../data/protocols/adapters';
 import { MailModel } from '../../domain';
-import env from '../../main/config/env';
 
 export class NodemailerAdapter implements SendMail, Transporter {
   #transporter: NodemailerTransporter = null;
 
   create(mail: MailModel): void {
     const { login, password } = mail;
-    const { mailHost, mailPort } = env;
     this.#transporter = createTransport({
-      host: mailHost,
-      port: mailPort,
+      host: 'smtp.gmail.com',
+      service: 'gmail',
+      port: 465,
       secure: false,
       auth: {
         user: login,
