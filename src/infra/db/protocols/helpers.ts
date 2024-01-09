@@ -1,1 +1,1 @@
-export type GetTableKey = 'mail';
+export type GetTableKey = 'mail' | 'errors';
