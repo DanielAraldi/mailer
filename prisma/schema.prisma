@@ -18,3 +18,9 @@ model Mail {
   username  String?
   createdAt DateTime @default(now())
 }
+
+model Errors {
+  id        String   @id @default(uuid())
+  stack     String?
+  createdAt DateTime @default(now())
+}
