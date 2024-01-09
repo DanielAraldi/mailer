@@ -5,6 +5,7 @@
     "target": "ES2022",
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "sourceMap": true,
     "rootDirs": ["./src", "./tests"],
     "allowJs": true
   },
