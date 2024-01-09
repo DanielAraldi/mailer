@@ -19,7 +19,7 @@ export const PrismaHelper = {
     }
   },
 
-  async getTable(name: GetTableKey): Promise<PrismaClient[GetTableKey]> {
+  async getTable<T extends GetTableKey>(name: T): Promise<PrismaClient[T]> {
     const table: PrismaClient[typeof name] = await this.client[name];
     return table;
   },
