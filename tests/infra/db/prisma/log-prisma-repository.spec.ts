@@ -1,10 +1,10 @@
 import { PrismaClient } from '@prisma/client';
+import { faker } from '@faker-js/faker';
 import { PrismaHelper, LogPrismaRepository } from '../../../../src/infra/db';
 import { LogErrorRepository } from '../../../data/protocols/db/log';
 
-import { faker } from '@faker-js/faker';
-
 let errorTable: PrismaClient['errors'];
+
 const makeSut = (): LogErrorRepository => new LogPrismaRepository();
 
 describe('LogPrismaRepository', () => {
