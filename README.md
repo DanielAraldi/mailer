@@ -1,6 +1,6 @@
 <h1 align="center">
   Mailer 📫
-  <h3 align="center">A micro-saas to send e-mails from your business! 📩🏢</h3>
+  <h3 align="center">A micro-saas to send e-mails for your business! 📩🏢</h3>
 </h1>
 
 <p align="center">
