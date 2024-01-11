@@ -1,12 +1,16 @@
-# Mailer 📫
+<h1 align="center">
+  Mailer 📫
+  <h3 align="center">A micro-saas to send e-mails for your business! 📩🏢</h3>
+</h1>
 
-<div style="width: 100%; display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: center; align-items: center; gap: 8px">
-
-[![wakatime](https://wakatime.com/badge/user/920a7e43-2969-4212-82ff-1b375685ff58/project/00e95626-aa7e-4501-a6fd-3f315bc40b35.svg)](https://wakatime.com/badge/user/920a7e43-2969-4212-82ff-1b375685ff58/project/00e95626-aa7e-4501-a6fd-3f315bc40b35)
-
-[![Coverage Status](https://coveralls.io/repos/github/DanielAraldi/mailer/badge.svg?branch=feat/send-mail-controller)](https://coveralls.io/github/DanielAraldi/mailer?branch=feat/send-mail-controller)
-
-</div>
+<p align="center">
+  <a href="https://coveralls.io/github/DanielAraldi/mailer?branch=main">
+    <img src="https://coveralls.io/repos/github/DanielAraldi/mailer/badge.svg?branch=main" alt="Coverage Status" />
+  </a>
+  <a href="https://wakatime.com/badge/user/920a7e43-2969-4212-82ff-1b375685ff58/project/00e95626-aa7e-4501-a6fd-3f315bc40b35">
+    <img src="https://wakatime.com/badge/user/920a7e43-2969-4212-82ff-1b375685ff58/project/00e95626-aa7e-4501-a6fd-3f315bc40b35.svg" alt="Wakatime" />
+  </a>
+</p>
 
 <p align="center">
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/DanielAraldi/Mailer?style=flat-square">
