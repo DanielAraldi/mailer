@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/DanielAraldi/mailer/compare/v1.2.2...v1.2.3) (2024-01-11)
+
+
+### Bug Fixes
+
+* added rest of the information in email template ([0b4480d](https://github.com/DanielAraldi/mailer/commit/0b4480db05930d4d05a6b067aa83dde9ca3e28d7))
+
 ## [1.2.2](https://github.com/DanielAraldi/mailer/compare/v1.2.1...v1.2.2) (2024-01-10)
 
 
