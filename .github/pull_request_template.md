@@ -1,8 +1,4 @@
----
-title: ''
-labels: enhancement
-assignees: DanielAraldi, RafaelMotaAlvess
----
+# Pull request title
 
 **Describe the feature**
 A clear and concise description of what the feature is.
