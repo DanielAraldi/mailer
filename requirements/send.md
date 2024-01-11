@@ -1,10 +1,10 @@
-# Send email
+# Send e-mail
 
-Send email endpoint is found on the `/api/send` path.
+Send e-mail endpoint is found on the `/api/send` path via `POST` HTTP method.
 
 ## Parameters
 
-This endpoint is used to send email, it accepts the following parameters:
+This endpoint is used to send e-mail, it accepts the following parameters:
 
 | field      | type       | description                                                                            | required |
 | ---------- | ---------- | -------------------------------------------------------------------------------------- | -------- |
@@ -18,7 +18,7 @@ This endpoint is used to send email, it accepts the following parameters:
 
 > To know more about the apps password, [click here](https://myaccount.google.com/apppasswords).
 
-The API will go to return **no content** when your email went to sended with success.
+The API will go to return **no content** when your e-mail went to sended with success.
 
 ## Errors
 
@@ -26,7 +26,7 @@ The API will go to return **no content** when your email went to sended with suc
 2. An internal server error occurs in API during request, the API will return HTTP 500 error.
 3. If email doesn't sended with success, the API will return HTTP 400 error with an message that occurred a failed.
 
-The API error object will contain following properties:
+The API error object will contain the follow properties:
 
 | field   | type     | description                          | required |
 | ------- | -------- | ------------------------------------ | -------- |
