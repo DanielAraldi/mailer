@@ -1,11 +1,12 @@
 import NodeEnvironment from 'jest-environment-node';
 import { execSync } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
-import { generateDatabaseUrl } from './generate-database-url';
+import { generateDatabaseUrl, setDatabaseUrl } from './helpers';
 import { PrismaHelper } from '../../src/infra/db';
 
 export default class PrismaTestEnvironment extends NodeEnvironment {
   private schema: string;
+  private readonly previousDatabaseURL = process.env.DATABASE_URL;
 
   async setup(): Promise<void> {
     await PrismaHelper.connect();
@@ -13,8 +14,7 @@ export default class PrismaTestEnvironment extends NodeEnvironment {
     this.schema = randomUUID();
     const databaseURL = generateDatabaseUrl(this.schema);
 
-    process.env.DATABASE_URL = databaseURL;
-    this.global.process.env.DATABASE_URL = databaseURL;
+    setDatabaseUrl(databaseURL);
 
     execSync(`npx prisma migrate deploy`);
     await super.setup();
@@ -24,5 +24,7 @@ export default class PrismaTestEnvironment extends NodeEnvironment {
     await PrismaHelper.client.$executeRawUnsafe(`DROP SCHEMA IF EXISTS "${this.schema}" CASCADE`);
     await PrismaHelper.disconnect();
     await super.teardown();
+
+    setDatabaseUrl(this.previousDatabaseURL);
   }
 }
