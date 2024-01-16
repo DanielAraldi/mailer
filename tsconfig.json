@@ -9,6 +9,6 @@
     "rootDirs": ["./src", "./tests"],
     "allowJs": true
   },
-  "include": ["./src", "./tests"],
+  "include": ["./src", "./tests", "./prisma/jest-environment-prisma"],
   "exclude": []
 }

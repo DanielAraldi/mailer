@@ -143,7 +143,7 @@ const config = {
   // snapshotSerializers: [],
 
   // The test environment that will be used for testing
-  testEnvironment: "node",
+  testEnvironment: "./prisma/jest-environment-prisma/prisma-test-environment.ts",
 
   // Options that will be passed to the testEnvironment
   // testEnvironmentOptions: {},
