@@ -1,3 +1,18 @@
+## [1.3.0](https://github.com/DanielAraldi/mailer/compare/v1.2.3...v1.3.0) (2024-01-16)
+
+
+### Features
+
+* created generate-database-url ([8724bb4](https://github.com/DanielAraldi/mailer/commit/8724bb408742000f1739bfb95f30fd51afd2f307))
+* created PrismaTestEnvironment ([373d6a8](https://github.com/DanielAraldi/mailer/commit/373d6a8999cabd5aadd58ddd7bf65181febce0af))
+* created setDatabaseUrl ([0af0bad](https://github.com/DanielAraldi/mailer/commit/0af0badc195f9a9e9f58febe5be79ad5ff4448ee))
+* typing the schema parameter ([342de17](https://github.com/DanielAraldi/mailer/commit/342de17342646fc2177403225cc23d76c3120837))
+
+
+### Bug Fixes
+
+* removing unused settings ([f3c91bc](https://github.com/DanielAraldi/mailer/commit/f3c91bcd312369188749b416c713b9511819ff6e))
+
 ## [1.2.3](https://github.com/DanielAraldi/mailer/compare/v1.2.2...v1.2.3) (2024-01-11)
 
 
