@@ -1,16 +1,25 @@
 import { mockSendMailParams } from '../../domain/mocks';
 import { NodemailerAdapterSpy } from '../mocks';
 import { DbSendMail } from '../../../src/data/usecases';
+import { SendEmailRepository } from '../../../src/data/protocols/db';
+import { InMemorySendRepository } from '../../infra/mocks';
 
 interface SutTypes {
+  sendPrismaRepository: SendEmailRepository;
   nodemailerSpy: NodemailerAdapterSpy;
   sut: DbSendMail;
 }
 
 const makeSut = (): SutTypes => {
+  const sendPrismaRepository = new InMemorySendRepository();
   const nodemailerSpy = new NodemailerAdapterSpy();
-  const sut = new DbSendMail(nodemailerSpy, nodemailerSpy);
+  const sut = new DbSendMail(
+    nodemailerSpy,
+    nodemailerSpy,
+    sendPrismaRepository
+  );
   return {
+    sendPrismaRepository,
     nodemailerSpy,
     sut,
   };
@@ -60,5 +69,16 @@ describe('DbSendMail Usecase', () => {
     nodemailerSpy.create();
     const wasSent = await sut.send(mail);
     expect(wasSent).toBeTruthy();
+  });
+
+  test('Should return false if sendMail() from NodemailerAdapter fails', async () => {
+    const { sut, nodemailerSpy } = makeSut();
+    const mail = mockSendMailParams();
+    nodemailerSpy.create();
+    jest
+      .spyOn(nodemailerSpy, 'send')
+      .mockReturnValueOnce(Promise.resolve(false));
+    const wasSent = await sut.send(mail);
+    expect(wasSent).toBeFalsy();
   });
 });

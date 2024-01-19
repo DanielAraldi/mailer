@@ -1,6 +1,6 @@
 import { SendEmailRepository } from '../../../../src/data/protocols/db';
 import { mockSendMailParams } from '../../../domain/mocks';
-import { InMemorySendRepository } from '../../../../src/infra/db/in-memory';
+import { InMemorySendRepository } from '../../mocks';
 
 const makeSut = (): SendEmailRepository => new InMemorySendRepository();
 
