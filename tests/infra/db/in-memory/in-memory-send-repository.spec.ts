@@ -5,6 +5,13 @@ const makeSut = (): InMemorySendRepository => new InMemorySendRepository();
 
 describe('SendInMemoryRepository', () => {
   describe('send()', () => {
+    test('Should call send() with correct values', async () => {
+      const sut = makeSut();
+      const sendMailParams = mockSendMailParams();
+      await sut.send(sendMailParams);
+      expect(sut.data).toEqual(sendMailParams);
+    });
+
     test('Should throw error if some error throws', async () => {
       const sut = makeSut();
       const sendMailParams = mockSendMailParams();
