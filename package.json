@@ -10,7 +10,7 @@
     "up": "docker compose up -d",
     "up:watch": "docker compose up",
     "stop": "docker compose stop",
-    "start": "node dist/main/server.js",
+    "start": "node dist/src/main/server.js",
     "update": "npm-check -s -u",
     "lint": "eslint . --ext ts --fix",
     "prepare": "husky install && npm run up && npm run prisma:dev && npm run stop",
