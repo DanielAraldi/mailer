@@ -1,11 +1,10 @@
 import { mockSendMailParams } from '../../domain/mocks';
 import { NodemailerAdapterSpy } from '../mocks';
 import { DbSendMail } from '../../../src/data/usecases';
-import { SendEmailRepository } from '../../../src/data/protocols/db';
 import { InMemorySendRepository } from '../../infra/mocks';
 
 interface SutTypes {
-  sendPrismaRepository: SendEmailRepository;
+  sendPrismaRepository: InMemorySendRepository;
   nodemailerSpy: NodemailerAdapterSpy;
   sut: DbSendMail;
 }
@@ -83,6 +82,14 @@ describe('DbSendMail Usecase', () => {
       .mockReturnValueOnce(Promise.resolve(false));
     const wasSent = await sut.send(mail);
     expect(wasSent).toBeFalsy();
+  });
+
+  test('Should call send() from SendPrismaRepository to add in database', async () => {
+    const { sut, nodemailerSpy, sendPrismaRepository } = makeSut();
+    const mail = mockSendMailParams();
+    nodemailerSpy.create();
+    await sut.send(mail);
+    expect(sendPrismaRepository.data).toEqual(mail);
   });
 
   test('Should throw error if send() from SendPrismaRepository throws', async () => {
