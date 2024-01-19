@@ -13,8 +13,6 @@ model Mail {
   to        String[]
   title     String
   message   String
-  login     String
-  password  String
   username  String?
   createdAt DateTime @default(now())
 }
