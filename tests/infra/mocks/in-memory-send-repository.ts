@@ -3,11 +3,13 @@ import { MailModel } from '../../../src/domain';
 
 export class InMemorySendRepository implements SendEmailRepository {
   public table: MailModel[] = [];
+  public data: MailModel;
 
   async send(
     data: SendEmailRepository.Params
   ): Promise<SendEmailRepository.Result> {
-    const result = this.table.push(data);
-    return !!result;
+    this.data = data;
+    this.table.push(data);
+    return await Promise.resolve(true);
   }
 }

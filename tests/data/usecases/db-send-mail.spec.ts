@@ -63,14 +63,6 @@ describe('DbSendMail Usecase', () => {
     await expect(promise).rejects.toThrow();
   });
 
-  test('Should return true if sendMail() from NodemailerAdapter send an email', async () => {
-    const { sut, nodemailerSpy } = makeSut();
-    const mail = mockSendMailParams();
-    nodemailerSpy.create();
-    const wasSent = await sut.send(mail);
-    expect(wasSent).toBeTruthy();
-  });
-
   test('Should return false if sendMail() from NodemailerAdapter returns false', async () => {
     const { sut, nodemailerSpy } = makeSut();
     const mail = mockSendMailParams();
@@ -82,18 +74,7 @@ describe('DbSendMail Usecase', () => {
     expect(wasSent).toBeFalsy();
   });
 
-  test('Should return true if SendPrismaRepository returns true', async () => {
-    const { sut, nodemailerSpy, sendPrismaRepository } = makeSut();
-    const mail = mockSendMailParams();
-    nodemailerSpy.create();
-    jest
-      .spyOn(sendPrismaRepository, 'send')
-      .mockReturnValueOnce(Promise.resolve(true));
-    const wasSent = await sut.send(mail);
-    expect(wasSent).toBeTruthy();
-  });
-
-  test('Should return true if SendPrismaRepository returns false', async () => {
+  test('Should return true if send() from SendPrismaRepository returns false', async () => {
     const { sut, nodemailerSpy, sendPrismaRepository } = makeSut();
     const mail = mockSendMailParams();
     nodemailerSpy.create();
@@ -102,5 +83,24 @@ describe('DbSendMail Usecase', () => {
       .mockReturnValueOnce(Promise.resolve(false));
     const wasSent = await sut.send(mail);
     expect(wasSent).toBeFalsy();
+  });
+
+  test('Should throw error if send() from SendPrismaRepository throws', async () => {
+    const { sut, nodemailerSpy, sendPrismaRepository } = makeSut();
+    const mail = mockSendMailParams();
+    nodemailerSpy.create();
+    jest
+      .spyOn(sendPrismaRepository, 'send')
+      .mockImplementationOnce(async () => await Promise.reject(new Error()));
+    const promise = sut.send(mail);
+    await expect(promise).rejects.toThrow();
+  });
+
+  test('Should return true if everything works perfectly', async () => {
+    const { sut, nodemailerSpy } = makeSut();
+    const mail = mockSendMailParams();
+    nodemailerSpy.create();
+    const wasSent = await sut.send(mail);
+    expect(wasSent).toBeTruthy();
   });
 });
