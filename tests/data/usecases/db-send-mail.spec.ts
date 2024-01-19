@@ -81,4 +81,15 @@ describe('DbSendMail Usecase', () => {
     const wasSent = await sut.send(mail);
     expect(wasSent).toBeFalsy();
   });
+
+  test('Should return true if SendPrismaRepository returns true', async () => {
+    const { sut, nodemailerSpy, sendPrismaRepository } = makeSut();
+    const mail = mockSendMailParams();
+    nodemailerSpy.create();
+    jest
+      .spyOn(sendPrismaRepository, 'send')
+      .mockReturnValueOnce(Promise.resolve(true));
+    const wasSent = await sut.send(mail);
+    expect(wasSent).toBeTruthy();
+  });
 });
