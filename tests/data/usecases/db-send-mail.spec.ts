@@ -89,7 +89,14 @@ describe('DbSendMail Usecase', () => {
     const mail = mockSendMailParams();
     nodemailerSpy.create();
     await sut.send(mail);
-    expect(sendPrismaRepository.data).toEqual(mail);
+    const { from, message, title, to, username } = mail;
+    expect(sendPrismaRepository.data).toEqual({
+      from,
+      message,
+      title,
+      to,
+      username,
+    });
   });
 
   test('Should throw error if send() from SendPrismaRepository throws', async () => {

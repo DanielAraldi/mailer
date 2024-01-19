@@ -1,9 +1,8 @@
 import { SendEmailRepository } from '../../../src/data/protocols/db';
-import { MailModel } from '../../../src/domain';
 
 export class InMemorySendRepository implements SendEmailRepository {
-  private readonly table: MailModel[] = [];
-  public data: MailModel;
+  private readonly table: SendEmailRepository.Params[] = [];
+  public data: SendEmailRepository.Params;
 
   async send(
     data: SendEmailRepository.Params

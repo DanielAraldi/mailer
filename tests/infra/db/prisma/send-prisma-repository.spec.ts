@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { PrismaHelper, SendPrismaRepository } from '../../../../src/infra/db';
 import { SendEmailRepository } from '../../../../src/data/protocols/db';
-import { mockSendMailParams } from '../../../../tests/domain/mocks';
+import { mockMailDatabaseParams } from '../../mocks';
 
 let mailTable: PrismaClient['mail'];
 
@@ -24,8 +24,8 @@ describe('SendPrismaRepository', () => {
   describe('send()', () => {
     test('Should return true if the email was sent.', async () => {
       const sut = makeSut();
-      const sendMailParams = mockSendMailParams();
-      const isValid = await sut.send(sendMailParams);
+      const mailDatabaseParams = mockMailDatabaseParams();
+      const isValid = await sut.send(mailDatabaseParams);
       expect(isValid).toBe(true);
     });
   });
