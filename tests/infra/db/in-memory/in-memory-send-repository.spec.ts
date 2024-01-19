@@ -5,6 +5,16 @@ const makeSut = (): InMemorySendRepository => new InMemorySendRepository();
 
 describe('SendInMemoryRepository', () => {
   describe('send()', () => {
+    test('Should throw error if some error throws', async () => {
+      const sut = makeSut();
+      const sendMailParams = mockSendMailParams();
+      jest
+        .spyOn(sut, 'send')
+        .mockImplementationOnce(async () => await Promise.reject(new Error()));
+      const promise = sut.send(sendMailParams);
+      await expect(promise).rejects.toThrow();
+    });
+
     test("Should return false if the email wasn't sent", async () => {
       const sut = makeSut();
       const sendMailParams = mockSendMailParams();
