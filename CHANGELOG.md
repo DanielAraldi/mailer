@@ -1,3 +1,15 @@
+## [1.4.0](https://github.com/DanielAraldi/mailer/compare/v1.3.1...v1.4.0) (2024-01-19)
+
+
+### Features
+
+* should return false if sendMail() from `NodemailerAdapter` fails ([d73bc48](https://github.com/DanielAraldi/mailer/commit/d73bc4893f291645fff76b6262aebf9b77c15eb3))
+
+
+### Bug Fixes
+
+* removed field's login and password ([e3e2977](https://github.com/DanielAraldi/mailer/commit/e3e2977f70d56b9a93dc8f70046ed3bfbdbc5642))
+
 ## [1.3.1](https://github.com/DanielAraldi/mailer/compare/v1.3.0...v1.3.1) (2024-01-19)
 
 ## [1.3.0](https://github.com/DanielAraldi/mailer/compare/v1.2.3...v1.3.0) (2024-01-16)
