@@ -22,9 +22,9 @@ The API will go to return **no content** when your e-mail went to sended with su
 
 ## Errors
 
-1. If some of the required properties doesn't sent for API request, an error HTTP 400 will be returned.
-2. An internal server error occurs in API during request, the API will return HTTP 500 error.
-3. If email doesn't sended with success, the API will return HTTP 400 error with an message that occurred a failed.
+1. If some of the required properties isn't sent for API request, an error HTTP `400` will be returned.
+2. If an internal server error occurs during an API request, the API will return HTTP `500` error.
+3. In case of unauthorized error, the API will return HTTP `401` error. This error is generated when login and password are invalid.
 
 The API error object will contain the follow properties:
 
