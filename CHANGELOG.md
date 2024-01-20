@@ -1,3 +1,10 @@
+## [1.5.0](https://github.com/DanielAraldi/mailer/compare/v1.4.0...v1.5.0) (2024-01-20)
+
+
+### Bug Fixes
+
+* created `UnauthorizedError` for user with login and app password invalid ([c37abaf](https://github.com/DanielAraldi/mailer/commit/c37abaf7f613ab99682b642ff88d45ed86e7f859))
+
 ## [1.4.0](https://github.com/DanielAraldi/mailer/compare/v1.3.1...v1.4.0) (2024-01-19)
 
 
