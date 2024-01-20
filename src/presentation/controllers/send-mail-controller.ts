@@ -1,6 +1,5 @@
 import { MailModel, SendEmail } from '../../domain';
-import { SendFailedError } from '../errors';
-import { badRequest, noContent, serverError } from '../helpers';
+import { badRequest, noContent, serverError, unauthorized } from '../helpers';
 import { Controller, HttpResponse, Validation } from '../protocols';
 
 export class SendMailController implements Controller {
@@ -15,7 +14,7 @@ export class SendMailController implements Controller {
       if (error) return badRequest(error);
 
       const wasSent = await this.sendEmail.send(request);
-      return wasSent ? noContent() : badRequest(new SendFailedError());
+      return wasSent ? noContent() : unauthorized();
     } catch (error) {
       return serverError(error);
     }
