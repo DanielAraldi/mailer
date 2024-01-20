@@ -5,8 +5,8 @@ import {
   badRequest,
   noContent,
   serverError,
+  unauthorized,
 } from '../../../src/presentation/helpers';
-import { SendFailedError } from '../../../src/presentation/errors';
 
 interface SutTypes {
   sut: SendMailController;
@@ -60,10 +60,10 @@ describe('SendMail Controller', () => {
     expect(request).toEqual(noContent());
   });
 
-  test("Should return 400 if SendMail isn't successfully", async () => {
+  test("Should return 401 if SendMail isn't successfully", async () => {
     const { sut, sendMailSpy } = makeSut();
     sendMailSpy.result = false;
     const request = await sut.handle(mockSendMailParams());
-    expect(request).toEqual(badRequest(new SendFailedError()));
+    expect(request).toEqual(unauthorized());
   });
 });

@@ -113,8 +113,8 @@ describe('Send Mail Routes', () => {
         },
       });
 
-      expect(response.body).toEqual('{"error":"Internal Server Error"}');
-      expect(response.statusCode).toBe(500);
+      expect(response.body).toEqual('{"error":"Unauthorized"}');
+      expect(response.statusCode).toBe(401);
     });
 
     test('Should return 204 when email is sent with succeeds', async () => {
